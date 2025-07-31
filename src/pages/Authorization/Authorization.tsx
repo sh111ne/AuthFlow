@@ -2,6 +2,8 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 
 import styles from './Authorization.module.scss';
 
+// import Cookies from 'js-cookie';
+
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { useLoginMutation } from '../../features/api/authApi';
 import { setUser } from '../../redux/slices/userSlice';
@@ -43,7 +45,7 @@ export default function Authorization() {
       console.log('Sending data:', activeUser);
 
       const response = await authUser(activeUser).unwrap();
-      console.log('Registration response:', response);
+      console.log('Authorization response:', response);
 
       if (response.user) {
         dispatch(setUser({ name: response.user.name, email: response.user.email }));

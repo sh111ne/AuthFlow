@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import arrow from '../../assets/img/arrow.svg';
-import singUp from '../../assets/img/signUpButton.svg';
+import signUp from '../../assets/img/signUpButton.svg';
 import signUpPhoto from '../../assets/img/signUp.png';
 
 type NewUser = {
@@ -214,7 +214,7 @@ export default function Registration() {
                 type="submit"
                 disabled={!isValid || isLoading}
                 className={styles.buttonSubmit}>
-                <img src={singUp} alt="singUp" className={styles.buttonSubmitImg} />
+                <img src={signUp} alt="singUp" className={styles.buttonSubmitImg} />
               </button>
             </div>
           </form>

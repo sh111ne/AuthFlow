@@ -9,18 +9,7 @@ export default defineConfig({
     },
   },
   server: {
-    port: 5500, // Указываем нужный порт
-    strictPort: true, // Запрещаем автоматический выбор другого порта, если 5500 занят
+    port: 5500,
+    strictPort: true,
   },
-  // server: {
-  //   proxy: {
-  //     '/api': {
-  //       target: 'https://dev.epx.everypixel.com',
-  //       changeOrigin: true,
-  //       rewrite: (path) => path.replace(/^\/api/, '/api/v1/auth'),
-  //       secure: false,
-  //       cookieDomainRewrite: 'localhost',
-  //     },
-  //   },
-  // },
 });

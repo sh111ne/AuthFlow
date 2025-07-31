@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useConfirmEmailMutation } from '../../features/api/authApi';
 import { useNavigate } from 'react-router-dom';
+import styles from './ConfirmEmail.module.scss';
 
 export default function ConfirmEmail() {
   const [confirmEmail] = useConfirmEmailMutation();
@@ -36,14 +37,14 @@ export default function ConfirmEmail() {
   }, []);
 
   return (
-    <div className="container">
-      <h1>Подтверждение email</h1>
+    <div className={styles.content}>
+      <span className={styles.title}>Подтверждение email</span>
       {isLoading ? (
-        <p>Пожалуйста, подождите, идет проверка...</p>
+        <span className={styles.text}>Пожалуйста, подождите, идет проверка...</span>
       ) : error ? (
-        <span>Ошибка верификации</span>
+        <span className={styles.text}>Ошибка верификации</span>
       ) : (
-        <span>Почта успешно подтверждена!</span>
+        <span className={styles.text}>Почта успешно подтверждена!</span>
       )}
     </div>
   );
