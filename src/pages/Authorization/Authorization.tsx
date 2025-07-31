@@ -1,11 +1,18 @@
 import { useForm, type SubmitHandler } from 'react-hook-form';
 
 import styles from './Authorization.module.scss';
+
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { useLoginMutation } from '../../features/api/authApi';
 import { setUser } from '../../redux/slices/userSlice';
-import { useNavigate } from 'react-router-dom';
+
+import { Link, useNavigate } from 'react-router-dom';
+
 import { sha256 } from 'js-sha256';
+
+import arrow from '../../assets/img/arrow.svg';
+import signIn from '../../assets/img/signInButton.svg';
+import signInPhoto from '../../assets/img/signIn.png';
 
 type User = {
   username: string;
@@ -55,57 +62,77 @@ export default function Authorization() {
 
   return (
     <div className={styles.wrapper}>
-      <div>
-        {isError && (
-          <div className={styles.errorMessage}>
-            Ошибка регистрации:{' '}
-            {error && 'data' in error
-              ? (error.data as { message?: string })?.message || 'Неизвестная ошибка'
-              : 'Неизвестная ошибка'}
-          </div>
-        )}
-        <form className={styles.formInput} onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor="userName" className={styles.labelText}>
-            UserName
-            <input
-              id="userName"
-              className={styles.input}
-              placeholder="user name*"
-              {...register('username', {
-                required: 'Поле обязательно к заполнению',
-              })}
-            />
-            <span className={styles.errorInput}>
-              {errors.username && String(errors.username.message)}
-            </span>
-          </label>
-          <label htmlFor="password" className={styles.labelText}>
-            Пароль
-            <input
-              id="password"
-              className={styles.input}
-              type="password"
-              placeholder="Пароль"
-              {...register('password_hash', {
-                required: 'Поле обязательно к заполнению',
-              })}
-            />
-            <span className={styles.errorInput}>
-              {errors.password_hash && String(errors.password_hash.message)}
-            </span>
-          </label>
-
-          <div className={styles.buttonsBottom}>
-            <input
-              type="submit"
-              disabled={!isValid || isLoading}
-              className={styles.buttonSubmit}
-              value={isLoading ? 'Отправка...' : 'Авторизация'}
-            />
-          </div>
-        </form>
+      <div className={styles.swap}>
+        <button onClick={() => navigate('/registration')} className={styles.swapButton}>
+          <span>Sign up</span>
+          <img src={arrow} alt="arrow" />
+        </button>
       </div>
-      <div>Картинка</div>
+      <div className={styles.content}>
+        <div className={styles.blockLeft}>
+          <div className={styles.title}>
+            <span className={styles.titleReg}>SIGN IN</span>
+            <span className={styles.titleText}>AND LET YOUR CREATIVITY RUN WILD</span>
+          </div>
+          <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+            <label htmlFor="userName" className={styles.label}>
+              <input
+                id="userName"
+                className={styles.input}
+                placeholder="user name*"
+                {...register('username', {
+                  required: 'This field is required',
+                })}
+              />
+              <span className={styles.errorInput}>
+                {errors.username && String(errors.username.message)}
+              </span>
+            </label>
+            <label htmlFor="password" className={styles.label}>
+              <input
+                id="password"
+                className={styles.input}
+                type="password"
+                placeholder="password"
+                {...register('password_hash', {
+                  required: 'This field is required',
+                })}
+              />
+              <span className={styles.errorInput}>
+                {errors.password_hash && String(errors.password_hash.message)}
+              </span>
+            </label>
+
+            <div className={styles.buttonsBottom}>
+              <button
+                type="submit"
+                disabled={!isValid || isLoading}
+                className={styles.buttonSubmit}>
+                <img src={signIn} alt="signIn" className={styles.buttonSubmitImg} />
+              </button>
+            </div>
+          </form>
+          <div className={styles.swapBottom}>
+            <span className={styles.swapBottomText}>Already have an account?</span>
+            <Link to="/authorization" className={styles.swapBottomLink}>
+              Sign up
+            </Link>
+          </div>
+          <div className={styles.errorBlock}>
+            {isError && (
+              <span className={styles.errorMessage}>
+                Authorization error:{' '}
+                {error && 'data' in error
+                  ? (error.data as { message?: string })?.message || 'Unknown error'
+                  : 'Unknown error'}
+              </span>
+            )}
+          </div>
+        </div>
+        <div className={styles.blockRight}>
+          <img src={signInPhoto} alt="signUpPhoto" className={styles.picture} />
+        </div>
+      </div>
     </div>
   );
 }

@@ -27,7 +27,7 @@ export default function ConfirmEmail() {
     const currentUrl = window.location.href;
     let token;
 
-    if (currentUrl.includes('dev.epx.everypixel.com/confirm/')) {
+    if (currentUrl.includes('/confirm/')) {
       token = currentUrl.split('/confirm/')[1];
       verifyEmail(token);
     } else {

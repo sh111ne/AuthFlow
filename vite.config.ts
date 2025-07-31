@@ -9,14 +9,18 @@ export default defineConfig({
     },
   },
   server: {
-    proxy: {
-      '/api': {
-        target: 'https://dev.epx.everypixel.com',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '/api/v1/auth'),
-        secure: false,
-        cookieDomainRewrite: 'localhost',
-      },
-    },
+    port: 5500, // Указываем нужный порт
+    strictPort: true, // Запрещаем автоматический выбор другого порта, если 5500 занят
   },
+  // server: {
+  //   proxy: {
+  //     '/api': {
+  //       target: 'https://dev.epx.everypixel.com',
+  //       changeOrigin: true,
+  //       rewrite: (path) => path.replace(/^\/api/, '/api/v1/auth'),
+  //       secure: false,
+  //       cookieDomainRewrite: 'localhost',
+  //     },
+  //   },
+  // },
 });

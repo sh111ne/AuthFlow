@@ -7,6 +7,8 @@
 
 .swap {
   &Button {
+    z-index: 100;
+    position: relative;
     font-family: 'Circe', sans-serif;
     font-size: 16px;
     padding: 5px;
@@ -21,9 +23,17 @@
     box-shadow: 5px 0 3px -1px rgba(0, 0, 0, 0.4), 0 5px 3px -1px rgba(0, 0, 0, 0.4);
     border-bottom-right-radius: 5px;
     outline: none;
+    transition: 0.2s;
+    img {
+      transition: 0.2s;
+    }
 
     &:hover {
+      color: #1a848e;
       cursor: pointer;
+      img {
+        margin-left: 10px;
+      }
     }
 
     &:focus {
@@ -176,6 +186,11 @@
 
             &A {
               color: #6de8ca;
+              transition: 0.2s;
+
+              &:hover {
+                color: #1a848e;
+              }
             }
           }
         }
@@ -186,7 +201,7 @@
           border: none;
           padding: 0;
 
-          .buttonSubmitImg {
+          &Img {
             width: 100%;
 
             &:hover {
@@ -212,6 +227,11 @@
         font-size: 24px;
         color: #6de8ca;
         margin-left: 5px;
+        transition: 0.2s;
+
+        &:hover {
+          color: #1a848e;
+        }
       }
     }
 

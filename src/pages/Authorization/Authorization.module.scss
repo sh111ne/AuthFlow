@@ -1,0 +1,186 @@
+.wrapper {
+  background-color: #1f1f1f;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.swap {
+  &Button {
+    z-index: 100;
+    position: relative;
+    font-family: 'Circe', sans-serif;
+    font-size: 16px;
+    padding: 5px;
+    width: 215px;
+    background-color: #444444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #6de8ca;
+    gap: 10px;
+    border: none;
+    box-shadow: 5px 0 3px -1px rgba(0, 0, 0, 0.4), 0 5px 3px -1px rgba(0, 0, 0, 0.4);
+    border-bottom-right-radius: 5px;
+    outline: none;
+    transition: 0.2s;
+    img {
+      transition: 0.2s;
+    }
+
+    &:hover {
+      color: #1a848e;
+      cursor: pointer;
+      img {
+        margin-left: 10px;
+      }
+    }
+
+    &:focus {
+      border: none;
+      box-shadow: 5px 0 3px -1px rgba(0, 0, 0, 0.4), 0 5px 3px -1px rgba(0, 0, 0, 0.4);
+      border-bottom-right-radius: 5px;
+    }
+  }
+}
+
+.content {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+
+  .blockLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 480px;
+    z-index: 100;
+
+    .title {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      &Reg {
+        font-size: 42px;
+        color: #fff;
+      }
+
+      &Text {
+        font-size: 24px;
+        color: #fff;
+      }
+    }
+
+    .form {
+      width: 550px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      background-color: #444444;
+      border-radius: 10px;
+      padding: 50px;
+      box-sizing: border-box;
+
+      .label {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        height: 70px;
+
+        .input {
+          width: 100%;
+          padding: 15px 25px;
+          box-sizing: border-box;
+          border-radius: 10px;
+          border: 1px solid #a8a8a9;
+          background-color: #444444;
+          outline: none;
+          font-size: 16px;
+          font-family: 'Circe', sans-serif;
+
+          &:focus {
+            border: 1px solid #a8a8a9;
+            border-radius: 10px;
+          }
+
+          &::placeholder {
+            font-family: 'Circe', sans-serif;
+            font-size: 16px;
+            color: #a8a8a9;
+          }
+        }
+
+        .errorInput,
+        .labelInput {
+          font-size: 14px;
+          color: #a8a8a9;
+        }
+      }
+
+      .buttonsBottom {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+
+        .buttonSubmit {
+          width: 100%;
+          background: none;
+          border: none;
+          padding: 0;
+
+          &Img {
+            width: 100%;
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+
+    .swapBottom {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-top: 10px;
+
+      &Text {
+        font-size: 24px;
+        color: #fff;
+      }
+
+      &Link {
+        font-size: 24px;
+        color: #6de8ca;
+        margin-left: 5px;
+        transition: 0.2s;
+
+        &:hover {
+          color: #1a848e;
+        }
+      }
+    }
+
+    .errorBlock {
+      height: 20px;
+
+      .errorMessage {
+        color: #fff;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .blockRight {
+    .picture {
+      width: 550px;
+      border-radius: 10px;
+    }
+  }
+}

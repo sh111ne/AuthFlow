@@ -3,22 +3,22 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: '/api',
-    credentials: 'include',
-    mode: 'cors',
+    baseUrl: 'https://dev.epx.everypixel.com/api/v1/auth',
+    // credentials: 'include',
+    // mode: 'cors',
     prepareHeaders: async (headers) => {
       headers.set('Content-Type', 'application/json');
-      const response = await fetch('https://dev.epx.everypixel.com/api/v1/auth/csrf-token', {
-        method: 'GET',
-        credentials: 'include',
-      });
-      const json = await response.json();
-      const token = json.token ? json.token.split(';')[0].split('=')[1] : '';
-      // const token = json.token ?? '';
+      // const response = await fetch('https://dev.epx.everypixel.com/api/v1/auth/csrf-token', {
+      //   method: 'GET',
+      //   // credentials: 'include',
+      // });
+      // const json = await response.json();
+      // const token = json.token ? json.token.split(';')[0].split('=')[1] : '';
+      // // const token = json.token ?? '';
 
-      if (token) {
-        headers.set('X-CSRF-Token', token);
-      }
+      // if (token) {
+      //   headers.set('X-CSRF-Token', token);
+      // }
 
       return headers;
     },

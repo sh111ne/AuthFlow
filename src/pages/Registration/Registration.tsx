@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import arrow from '../../assets/img/arrow.svg';
-import singUn from '../../assets/img/signUpButton.svg';
+import singUp from '../../assets/img/signUpButton.svg';
 import signUpPhoto from '../../assets/img/signUp.png';
 
 type NewUser = {
@@ -92,7 +92,7 @@ export default function Registration() {
       <div className={styles.content}>
         <div className={styles.blockLeft}>
           <div className={styles.title}>
-            <span className={styles.titleReg}>SIGN IN</span>
+            <span className={styles.titleReg}>SIGN UP</span>
             <span className={styles.titleText}>AND LET YOUR CREATIVITY RUN WILD</span>
           </div>
           <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -214,7 +214,7 @@ export default function Registration() {
                 type="submit"
                 disabled={!isValid || isLoading}
                 className={styles.buttonSubmit}>
-                <img src={singUn} alt="sing" className={styles.buttonSubmitImg} />
+                <img src={singUp} alt="singUp" className={styles.buttonSubmitImg} />
               </button>
             </div>
           </form>
@@ -227,10 +227,10 @@ export default function Registration() {
           <div className={styles.errorBlock}>
             {isError && (
               <span className={styles.errorMessage}>
-                Ошибка регистрации:{' '}
+                Registration error:{' '}
                 {error && 'data' in error
-                  ? (error.data as { message?: string })?.message || 'Неизвестная ошибка'
-                  : 'Неизвестная ошибка'}
+                  ? (error.data as { message?: string })?.message || 'Unknown error'
+                  : 'Unknown error'}
               </span>
             )}
           </div>
