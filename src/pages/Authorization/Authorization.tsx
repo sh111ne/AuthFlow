@@ -2,8 +2,6 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 
 import styles from './Authorization.module.scss';
 
-// import Cookies from 'js-cookie';
-
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { useLoginMutation } from '../../features/api/authApi';
 import { setUser } from '../../redux/slices/userSlice';
@@ -11,6 +9,8 @@ import { setUser } from '../../redux/slices/userSlice';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { sha256 } from 'js-sha256';
+
+import Cookies from 'js-cookie';
 
 import arrow from '../../assets/img/arrow.svg';
 import signIn from '../../assets/img/signInButton.svg';
@@ -48,6 +48,13 @@ export default function Authorization() {
       console.log('Authorization response:', response);
 
       if (response.user) {
+        Cookies.set('access_token', response.access, {
+          expires: 1,
+          path: '/',
+          secure: window.location.protocol === 'https:',
+          sameSite: 'strict',
+        });
+
         dispatch(setUser({ name: response.user.name, email: response.user.email }));
         localStorage.setItem(
           'user',
@@ -61,6 +68,7 @@ export default function Authorization() {
   };
 
   console.log(user);
+  console.log(document.cookie);
 
   return (
     <div className={styles.wrapper}>
