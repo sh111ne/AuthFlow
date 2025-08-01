@@ -4,8 +4,8 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 
 import styles from './Registration.module.scss';
 
-import { useAppDispatch, useAppSelector } from '../../redux/store';
-import { useRegisterMutation } from '../../features/api/authApi';
+import { useAppDispatch } from '../../redux/store';
+import { useGetMeQuery, useRegisterMutation } from '../../features/api/authApi';
 import { setUser } from '../../redux/slices/userSlice';
 
 import { useNavigate } from 'react-router-dom';
@@ -26,8 +26,8 @@ type NewUser = {
 
 export default function Registration() {
   const [registerUser, { isLoading, isError, error }] = useRegisterMutation();
+  const { refetch } = useGetMeQuery();
   const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => state.userSlice);
   const navigate = useNavigate();
 
   const {
@@ -65,10 +65,10 @@ export default function Registration() {
           setUser({
             name: user.userName,
             email: user.email,
-            // isVerified: false,
           }),
         );
         localStorage.setItem('user', JSON.stringify({ name: user.userName, email: user.email }));
+        await refetch();
         navigate('/');
       }
     } catch (err) {
@@ -78,8 +78,6 @@ export default function Registration() {
       }
     }
   };
-
-  console.log(user);
 
   return (
     <div className={styles.wrapper}>

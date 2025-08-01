@@ -2,8 +2,8 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 
 import styles from './Authorization.module.scss';
 
-import { useAppDispatch, useAppSelector } from '../../redux/store';
-import { useLoginMutation } from '../../features/api/authApi';
+import { useAppDispatch } from '../../redux/store';
+import { useGetMeQuery, useLoginMutation } from '../../features/api/authApi';
 import { setUser } from '../../redux/slices/userSlice';
 
 import { Link, useNavigate } from 'react-router-dom';
@@ -23,8 +23,8 @@ type User = {
 
 export default function Authorization() {
   const [authUser, { isLoading, isError, error }] = useLoginMutation();
+  const { refetch } = useGetMeQuery();
   const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => state.userSlice);
   const navigate = useNavigate();
 
   const {
@@ -60,15 +60,13 @@ export default function Authorization() {
           'user',
           JSON.stringify({ name: response.user.name, email: response.user.email }),
         );
+        await refetch();
         navigate('/');
       }
     } catch (err) {
       console.error('Login error:', err);
     }
   };
-
-  console.log(user);
-  console.log(document.cookie);
 
   return (
     <div className={styles.wrapper}>

@@ -23,7 +23,7 @@ export default function Home() {
     }
   }, [data, isSuccess, dispatch]);
 
-  console.log(document.cookie, 'куки');
+  console.log(user);
   return (
     <div className={styles.content}>
       <Link to="/registration">
