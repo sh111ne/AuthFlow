@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+
 import { useConfirmEmailMutation } from '../../features/api/authApi';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 import styles from './ConfirmEmail.module.scss';
 
 export default function ConfirmEmail() {
@@ -8,15 +10,14 @@ export default function ConfirmEmail() {
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const verifyEmail = async (token: string) => {
       setLoading(true);
       try {
-        if (token) {
-          const response = await confirmEmail(token).unwrap();
-          console.log('Email confirmed:', response);
-        }
+        const response = await confirmEmail(token).unwrap();
+        console.log('Email confirmed:', response);
       } catch (error) {
         console.error('Email confirmation failed:', error);
         setError(true);
@@ -25,16 +26,18 @@ export default function ConfirmEmail() {
       }
     };
 
-    const currentUrl = window.location.href;
-    let token;
+    const pathParts = location.pathname.split('/confirm/');
 
-    if (currentUrl.includes('/confirm/')) {
-      token = currentUrl.split('/confirm/')[1];
+    if (pathParts.length === 2 && pathParts[1]) {
+      const token = pathParts[1];
       verifyEmail(token);
     } else {
-      navigate('/');
+      console.error('Invalid confirmation URL');
+      setError(true);
+
+      setTimeout(() => navigate('/'), 2000);
     }
-  }, []);
+  }, [confirmEmail, navigate, location.pathname]);
 
   return (
     <div className={styles.content}>

@@ -16,10 +16,7 @@ import arrow from '../../assets/img/arrow.svg';
 import signIn from '../../assets/img/signInButton.svg';
 import signInPhoto from '../../assets/img/signIn.png';
 
-type User = {
-  username: string;
-  password_hash: string;
-};
+import type { User } from '../../@types/types';
 
 export default function Authorization() {
   const [authUser, { isLoading, isError, error }] = useLoginMutation();
@@ -122,7 +119,7 @@ export default function Authorization() {
           </form>
           <div className={styles.swapBottom}>
             <span className={styles.swapBottomText}>Already have an account?</span>
-            <Link to="/authorization" className={styles.swapBottomLink}>
+            <Link to="/registration" className={styles.swapBottomLink}>
               Sign up
             </Link>
           </div>

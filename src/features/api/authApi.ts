@@ -1,18 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import Cookies from 'js-cookie';
-
-type Profile = {
-  blockchain_account_id: null | number;
-  created_at: string;
-  email: string;
-  extension: null; //не уверен
-  id: string;
-  mailing_agree: number;
-  name: string;
-  pricing_plan_id: null; //не уверен
-  updated_at: string;
-};
+import type { PostRegistration, Profile, User } from '../../@types/types';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
@@ -30,21 +19,21 @@ export const authApi = createApi({
   }),
   endpoints: (builder) => ({
     register: builder.mutation({
-      query: (userData) => ({
+      query: (userData: PostRegistration) => ({
         url: '/auth/register',
         method: 'POST',
         body: userData,
       }),
     }),
     login: builder.mutation({
-      query: (credentials) => ({
+      query: (credentials: User) => ({
         url: '/auth/login',
         method: 'POST',
         body: credentials,
       }),
     }),
     confirmEmail: builder.mutation({
-      query: (token) => ({
+      query: (token: string) => ({
         url: `/auth/confirm-email/${token}`,
         method: 'POST',
       }),

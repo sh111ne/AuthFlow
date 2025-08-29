@@ -7,6 +7,24 @@
   font-display: swap;
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   font-family: 'Circe', sans-serif;
+}
+
+.loader {
+  background-color: #1f1f1f;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading {
+  color: #fff;
 }

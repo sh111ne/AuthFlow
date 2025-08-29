@@ -7,7 +7,7 @@ export default function Layout() {
     <div className={styles.layout}>
       <Navigation />
       <main className={styles.content}>
-        <Outlet /> {/* Здесь будут отображаться страницы */}
+        <Outlet />
       </main>
     </div>
   );

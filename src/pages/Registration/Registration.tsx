@@ -15,14 +15,7 @@ import arrow from '../../assets/img/arrow.svg';
 import signUp from '../../assets/img/signUpButton.svg';
 import signUpPhoto from '../../assets/img/signUp.png';
 
-type NewUser = {
-  userName: string;
-  email: string;
-  password: string;
-  repeat?: string;
-  politic?: boolean;
-  subscription?: boolean;
-};
+import type { NewUser } from '../../@types/types';
 
 export default function Registration() {
   const [registerUser, { isLoading, isError, error }] = useRegisterMutation();
